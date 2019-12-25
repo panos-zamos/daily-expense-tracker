@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    return \App\User::with('defaultBudget', 'defaultBudget.last30expenses')->get();
+});

@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use UsesUuid;
+
+    protected $guarded = []; // YOLO
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +29,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function defaultBudget()
+    {
+        return $this->belongsTo(Budget::class, 'default_budget_id');
+    }
 }
