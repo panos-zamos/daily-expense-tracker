@@ -19,7 +19,7 @@ class Budget extends Model
     {
         return $this->hasMany(Expense::class)
             ->latest()
-            ->take(5)
+            ->take(15)
             ;
     }
 }

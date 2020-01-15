@@ -16,5 +16,31 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get();
+    return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get()->first();
 });
+
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home', [
+        'user' => \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get()->first(),
+    ]);
+})->name('home');
+
+Route::post('/add_expense', function(\App\Http\Requests\NewExpense $expense) {
+    $data = $expense->validated();
+    $user = \App\User::with('defaultBudget')->get()->first();
+    $newExpense = new \App\Expense($data + ['user_id' => $user->id, 'gain' => false]);
+    $user->defaultBudget->expenses()->save($newExpense);
+
+    return redirect('home');
+})->name('add_expense');
+
+Route::post('/add_gain', function(\App\Http\Requests\NewExpense $expense) {
+    $data = $expense->validated();
+    $user = \App\User::with('defaultBudget')->get()->first();
+    $newExpense = new \App\Expense($data + ['user_id' => $user->id, 'gain' => true]);
+    $user->defaultBudget->expenses()->save($newExpense);
+
+    return redirect('home');
+})->name('add_gain');
