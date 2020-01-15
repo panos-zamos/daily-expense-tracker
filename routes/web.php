@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return \App\User::with('defaultBudget', 'defaultBudget.last30expenses')->get();
+    return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get();
 });

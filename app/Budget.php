@@ -14,12 +14,12 @@ class Budget extends Model
     {
         return $this->hasMany(Expense::class);
     }
-    public function last30expenses()
+
+    public function latestExpenses()
     {
         return $this->hasMany(Expense::class)
-//            ->get(['amount', 'gain', 'note', 'created_at'])
-            ->take(2)
-//            ->last()
+            ->latest()
+            ->take(5)
             ;
     }
 }
