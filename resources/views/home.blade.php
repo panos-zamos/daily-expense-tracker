@@ -11,9 +11,9 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <ul>
+                    <ul class="list-unstyled">
                         @foreach ($user->defaultBudget->latestExpenses as $expense)
-                            <li>@if ($expense->gain) + @else - @endif {{$expense->note}} :: {{ $expense->amount }}</li>
+                            <li>{{$expense->note}}:@if ($expense->gain) +@else -@endif{{ $expense->amount }}</li>
                         @endforeach
                     </ul>
                 </div>
