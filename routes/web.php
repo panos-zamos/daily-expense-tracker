@@ -11,11 +11,12 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/test', function () {
         return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses', 'defaultBudget.latestExpenses.user')->get()->first();
