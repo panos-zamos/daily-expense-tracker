@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Edit expense/gain</h3>
                 </div>
