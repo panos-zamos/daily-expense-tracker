@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function initials()
+    {
+        return Str::substr($this->name, 0, 1);
+    }
 
     public function defaultBudget()
     {

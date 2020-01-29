@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Budget::class, function (Faker $faker) {
     return [
-        'name' => 'Default home budget',
+        'name' => 'Home budget',
     ];
 });

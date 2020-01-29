@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\Http\Requests\NewExpense;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -57,7 +58,11 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        return response()
+            ->view('expenses.edit', [
+                'user' => \App\User::with('defaultBudget', 'defaultBudget.latestExpenses', 'defaultBudget.latestExpenses.user')->get()->first(),
+                'editExpense' => $expense
+        ]);
     }
 
     /**
@@ -67,9 +72,12 @@ class ExpenseController extends Controller
      * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expense $expense)
+    public function update(NewExpense $request, Expense $expense)
     {
-        //
+        $expense->fill($request->validated())->save();
+
+        // @TODO return to the right page (if paginated)
+        return response()->redirectTo('home');
     }
 
     /**

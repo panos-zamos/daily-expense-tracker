@@ -11,19 +11,19 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/test', function () {
-    return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get()->first();
+    return \App\User::with('defaultBudget', 'defaultBudget.latestExpenses', 'defaultBudget.latestExpenses.user')->get()->first();
 });
-
-Auth::routes();
 
 Route::get('/home', function() {
     return view('home', [
-        'user' => \App\User::with('defaultBudget', 'defaultBudget.latestExpenses')->get()->first(),
+        'user' => \App\User::with('defaultBudget', 'defaultBudget.latestExpenses', 'defaultBudget.latestExpenses.user')->get()->first(),
     ]);
 })->name('home');
 
@@ -44,3 +44,5 @@ Route::post('/add_gain', function(\App\Http\Requests\NewExpense $expense) {
 
     return redirect('home');
 })->name('add_gain');
+
+Route::resource('expenses', 'ExpenseController');
