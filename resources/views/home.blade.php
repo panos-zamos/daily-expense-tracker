@@ -41,7 +41,7 @@
         <div class="col-md-4">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Add new expense/gain</h3>
+                    <h3 class="box-title">Add new expense/income</h3>
                 </div>
                 <div class="box-body">
 
@@ -62,7 +62,7 @@
 
                         <div class="">
                             <button type="submit" class="btn btn-danger">Add expense</button>
-                            <button type="submit" formaction="/add_gain" class="btn btn-success pull-right">Add gain
+                            <button type="submit" formaction="/add_gain" class="btn btn-success pull-right">Add income
                             </button>
                         </div>
                     </form>
