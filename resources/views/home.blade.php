@@ -15,7 +15,7 @@
                     @php
                         $fmt = numfmt_create( 'sr_SR', NumberFormatter::CURRENCY );
                     @endphp
-                    <span class="text-small"> (balance: {{ numfmt_format_currency($fmt, $user->defaultBudget->getBalance()->balance, 'din') }})</span>
+                    <span class="text-small" title="in {{$user->defaultBudget->getBalance()->incomesum}}/out {{$user->defaultBudget->getBalance()->expensesum}}"> (balance: {{ numfmt_format_currency($fmt, $user->defaultBudget->getBalance()->totalsum, 'din') }})</span>
                 </div>
                 <div class="box-body">
 

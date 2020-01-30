@@ -16,7 +16,9 @@ class Budget extends Model
     public function getBalance()
     {
         return DB::table('expenses')
-            ->selectRaw('sum(case when gain then amount else -1*amount end) as balance')
+            ->selectRaw('sum(case when gain then amount else -1*amount end) as totalSum')
+            ->selectRaw('sum(case when gain then amount else 0 end) as incomeSum')
+            ->selectRaw('sum(case when gain then 0 else amount end) as expenseSum')
             ->where('budget_id', $this->id)
             ->first()
             ;
